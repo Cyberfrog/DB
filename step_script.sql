@@ -41,7 +41,7 @@ code  VARCHAR(10),
 Name 	VARCHAR(10),
 adderess	VARCHAR(100),
 city 		VARCHAR(100),
-CONSTRAINT apti_test_pk PRIMARY KEY(center_code),
+CONSTRAINT centers_pk PRIMARY KEY(center_code),
 ) TABLESPACE ts_step_system; 
 
 CREATE TABLE Apti_test (
@@ -50,7 +50,7 @@ Applicant_id NUMBER(10),
 center_code	VARCHAR(50),
 Exam_date	DATE,
 CONSTRAINT apti_test_pk PRIMARY KEY(id),
-CONSTRAINT Applicant_id_fk FOREIGN KEY (Applicant_id) REFERENCES Aplicant(id),
+CONSTRAINT Applicant_id_Apti_fk FOREIGN KEY (Applicant_id) REFERENCES Aplicant(id),
 CONSTRAINT center_code_fk FOREIGN KEY (center_code) REFERENCES centers(code),
 ) TABLESPACE ts_step_system; 
 
@@ -61,6 +61,26 @@ Univercity	VARCHAR(50)NOT NULL,
 10th_Marks	NUMBER(3)NOT NULL,
 12th_Marks  NUMBER(3),
 Diploma_Marks NUMBER(3)NOT NULL,	
-CONSTRAINT apti_test_pk PRIMARY KEY(Enrollment_number),
-CONSTRAINT Applicant_id_fk FOREIGN KEY (Applicant_id) REFERENCES Aplicant(id)
+CONSTRAINT e_details_pk PRIMARY KEY(Enrollment_number),
+CONSTRAINT Applicant_id_ed_fk FOREIGN KEY (Applicant_id) REFERENCES Aplicant(id)
+) TABLESPACE ts_step_system; 
+
+CREATE TABLE Technical_Interview(
+id Number(10),
+Applicant_id NUMBER(10),
+interviwe_date	DATE NOT NULL,
+interviwer_name	VARCHAR(20),
+feedback_note varchar(500),
+CONSTRAINT	interview_pk PRIMARY KEY(id),
+CONSTRAINT Applicant_id_interview_fk FOREIGN KEY (Applicant_id) REFERENCES Aplicant(id)
+) TABLESPACE ts_step_system;
+ 
+CREATE TABLE Teliphonic_Interview(
+id Number(10),
+Applicant_id NUMBER(10),
+interviwe_date	DATE NOT NULL,
+interviwer_name	VARCHAR(20),
+feedback_note varchar(500),
+CONSTRAINT	teliphonic_interview_pk PRIMARY KEY(id),
+CONSTRAINT Applicant_id_ti_fk FOREIGN KEY (Applicant_id) REFERENCES Aplicant(id)
 ) TABLESPACE ts_step_system; 
