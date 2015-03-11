@@ -36,13 +36,18 @@ pin_code	VARCHAR(10),
 CONSTRAINT aplicant_pk PRIMARY KEY(id),
 CONSTRAINT aplicant_gender_chk CHECK(gender IN ('M', 'F') )
 );
+
+PROMPT 'Applicant created'
+
 CREATE TABLE Centers (
 code  VARCHAR(10),
 Name 	VARCHAR(10),
 adderess	VARCHAR(100),
 city 		VARCHAR(100),
-CONSTRAINT centers_pk PRIMARY KEY(center_code),
+CONSTRAINT centers_pk PRIMARY KEY(center_code)
 ) TABLESPACE ts_step_system; 
+
+PROMPT 'centers created'
 
 CREATE TABLE Apti_test (
 id 		 	 Number(10),
@@ -51,19 +56,21 @@ center_code	VARCHAR(50),
 Exam_date	DATE,
 CONSTRAINT apti_test_pk PRIMARY KEY(id),
 CONSTRAINT Applicant_id_Apti_fk FOREIGN KEY (Applicant_id) REFERENCES Aplicant(id),
-CONSTRAINT center_code_fk FOREIGN KEY (center_code) REFERENCES centers(code),
+CONSTRAINT center_code_fk FOREIGN KEY (center_code) REFERENCES centers(code)
 ) TABLESPACE ts_step_system; 
+PROMPT 'Apti_test created'
 
 CREATE TABLE Educational_Details(
 Enrollment_number Number(10),
 Applicant_id NUMBER(10),
 Univercity	VARCHAR(50)NOT NULL,
-10th_Marks	NUMBER(3)NOT NULL,
-12th_Marks  NUMBER(3),
+Tenth_Marks	NUMBER(3)NOT NULL,
+Twelth_Marks  NUMBER(3),
 Diploma_Marks NUMBER(3)NOT NULL,	
 CONSTRAINT e_details_pk PRIMARY KEY(Enrollment_number),
 CONSTRAINT Applicant_id_ed_fk FOREIGN KEY (Applicant_id) REFERENCES Aplicant(id)
 ) TABLESPACE ts_step_system; 
+PROMPT 'Educational_Details created'
 
 CREATE TABLE Technical_Interview(
 id Number(10),
@@ -74,7 +81,8 @@ feedback_note varchar(500),
 CONSTRAINT	interview_pk PRIMARY KEY(id),
 CONSTRAINT Applicant_id_interview_fk FOREIGN KEY (Applicant_id) REFERENCES Aplicant(id)
 ) TABLESPACE ts_step_system;
- 
+PROMPT 'Technical_Interview created'
+
 CREATE TABLE Teliphonic_Interview(
 id Number(10),
 Applicant_id NUMBER(10),
@@ -83,4 +91,6 @@ interviwer_name	VARCHAR(20),
 feedback_note varchar(500),
 CONSTRAINT	teliphonic_interview_pk PRIMARY KEY(id),
 CONSTRAINT Applicant_id_ti_fk FOREIGN KEY (Applicant_id) REFERENCES Aplicant(id)
-) TABLESPACE ts_step_system; 
+) TABLESPACE ts_step_system;
+ 
+PROMPT 'Teliphonic_Interview created'
