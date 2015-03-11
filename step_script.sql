@@ -20,6 +20,12 @@ PROMPT '.... User created with required privileges'
 -- Connect as the schema user
 PROMPT 'Connecting as step_admin'
 conn step_admin/password
+-- DROP TABLE Apti_test CASCADE CONSTRAINTS;
+-- DROP TABLE Educational_Details CASCADE CONSTRAINTS;
+-- DROP TABLE Teliphonic_Interview CASCADE CONSTRAINTS;
+-- DROP TABLE Technical_Interview CASCADE CONSTRAINTS;
+-- DROP TABLE Centers CASCADE CONSTRAINTS;
+-- DROP TABLE Aplicant CASCADE CONSTRAINTS;
 
 CREATE TABLE Aplicant (
 id			NUMBER(10),
@@ -32,9 +38,11 @@ adderess1 	VARCHAR(100),
 adderess2	VARCHAR(100),
 city		VARCHAR(30),
 State 		VARCHAR(30),
-pin_code	VARCHAR(10),	  
+pin_code	VARCHAR(10),
+Status 		VARCHAR(20),	  
 CONSTRAINT aplicant_pk PRIMARY KEY(id),
-CONSTRAINT aplicant_gender_chk CHECK(gender IN ('M', 'F') )
+CONSTRAINT aplicant_gender_chk CHECK(gender IN ('M', 'F') ),
+CONSTRAINT aplicant_Status_chk CHECK(Status IN ('NEW', 'PassedTest','interviwed','selected','failedTest','Rejected') )
 );
 
 PROMPT 'Applicant created'
@@ -44,7 +52,7 @@ code  VARCHAR(10),
 Name 	VARCHAR(10),
 adderess	VARCHAR(100),
 city 		VARCHAR(100),
-CONSTRAINT centers_pk PRIMARY KEY(center_code)
+CONSTRAINT centers_pk PRIMARY KEY(code)
 ) TABLESPACE ts_step_system; 
 
 PROMPT 'centers created'
